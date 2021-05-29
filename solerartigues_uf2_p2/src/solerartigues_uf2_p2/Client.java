@@ -73,6 +73,7 @@ public class Client {
     	return bonificacions;
     }
     
+    /* informe abans de l'exercici 20
     public String informe()
     {
         return composaCapsalera()
@@ -111,5 +112,54 @@ public class Client {
     {
     	return "Import a pagar: " + importTotal() + "€\n" +
                 "Punts guanyats: " + bonificacionsTotals() + "\n";
+    }*/
+    
+    // Exercici 20: passar informe a HTML
+    public String informe()
+    {
+        return composaCapsalera()
+        		+composaDetall()
+        		+composaPeu();
+    }
+    
+    
+    // 17: Dividir l'informe en 3 mètodes
+    public String composaCapsalera()
+    {
+    	return "<h1>Informe de lloguers</h1>\n" +
+    			"<p>Informe de lloguers del client " +
+                getNom() +
+                " <em>" + getNif() + "</em></p>\n" +
+                "<table>" +
+                "<tr>" +
+                "<td><strong>Marca</strong></td>" +
+                "<td><strong>Model</strong></td>" +
+                "<td><strong>Import</strong></td></tr>";
+    }
+    
+    public String composaDetall()
+    {	// detall de tots els lloguers del client
+    	String resultat = "";
+    	
+    	for (Lloguer lloguer: lloguers)
+    	{
+	    	// composa els resultats d'aquest lloguer
+	        resultat += "\t<tr>" +
+	            "<td>" + lloguer.getVehicle().getMarca() + "</td>" + 
+	            " " +
+	            "<td>" + lloguer.getVehicle().getModel() + ": " + "</td>" + 
+	        // Exercici 10, substituir les variables temporales per crides
+	            // substituim variable pel seu càlcul
+	            "<td>" + (lloguer.quantitat() * Lloguer.PREU_UNITAT_LLOGUER) + "€" + "</td>" +  "\n";
+	        resultat += "</tr>";
+    	}
+    	return resultat;
+    }
+    
+    public String composaPeu()
+    {
+    	return "</table>" +
+    			"<p>Import a pagar: <em>" + importTotal() + "€</em></p>\n" +
+                "<p>Punts guanyats: <em>" + bonificacionsTotals() + "</em></p>\n";
     }
 }

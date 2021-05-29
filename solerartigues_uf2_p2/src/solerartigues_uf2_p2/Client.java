@@ -57,14 +57,6 @@ public class Client {
         	// Exercici 10, substituir les variables temporals per crides
             // eliminem variable quantitat;
 
-            // composa els resultats d'aquest lloguer
-            resultat += "\t" +
-                lloguer.getVehicle().getMarca() +
-                " " +
-                lloguer.getVehicle().getModel() + ": " +
-            // Exercici 10, substituir les variables temporales per crides
-                // substituim variable pel seu càlcul
-                (lloguer.quantitat() * 30) + "€" + "\n";
             total += lloguer.quantitat() * 30;
         }
         return total;
@@ -83,14 +75,41 @@ public class Client {
     
     public String informe()
     {
-        String resultat = "Informe de lloguers del client " +
-            getNom() +
-            " (" + getNif() + ")\n";
-
-
-        // afegeix informació final
-        resultat += "Import a pagar: " + importTotal() + "€\n" +
-            "Punts guanyats: " + bonificacionsTotals() + "\n";
-        return resultat;
+        return composaCapsalera()
+        		+composaDetall()
+        		+composaPeu();
+    }
+    
+    
+    // 17: Dividir l'informe en 3 mètodes
+    public String composaCapsalera()
+    {
+    	return "Informe de lloguers del client " +
+                getNom() +
+                " (" + getNif() + ")\n";
+    }
+    
+    public String composaDetall()
+    {	// detall de tots els lloguers del client
+    	String resultat = "";
+    	
+    	for (Lloguer lloguer: lloguers)
+    	{
+	    	// composa els resultats d'aquest lloguer
+	        resultat += "\t" +
+	            lloguer.getVehicle().getMarca() +
+	            " " +
+	            lloguer.getVehicle().getModel() + ": " +
+	        // Exercici 10, substituir les variables temporales per crides
+	            // substituim variable pel seu càlcul
+	            (lloguer.quantitat() * 30) + "€" + "\n";
+    	}
+    	return resultat;
+    }
+    
+    public String composaPeu()
+    {
+    	return "Import a pagar: " + importTotal() + "€\n" +
+                "Punts guanyats: " + bonificacionsTotals() + "\n";
     }
 }

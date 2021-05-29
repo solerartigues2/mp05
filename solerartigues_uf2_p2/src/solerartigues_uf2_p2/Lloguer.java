@@ -46,4 +46,18 @@ public class Lloguer
     	}
     	return quantitat;
     }
+    
+    // Exercici 12: moure el mètode de calcular bonificacions a Lloguer
+    public double bonificacions()
+    {
+        // afegeix lloguers freqüents
+        double bonificacions = 1.0;
+
+        // afegeix bonificació per dos dies de lloguer de Luxe
+        if (this.getVehicle().getCategoria() == Vehicle.LUXE &&
+        		this.getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
+    }
 }

@@ -35,7 +35,19 @@ public class Client {
     
     public boolean conte(Lloguer lloguer) { return lloguers.contains(lloguer); }
 
-    
+    // Exercici 11
+    /*public double bonificacionsDelLloguer(Lloguer lloguer)
+    {
+        // afegeix lloguers freqüents
+        double bonificacions = 1.0;
+
+        // afegeix bonificació per dos dies de lloguer de Luxe
+        if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
+                lloguer.getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
+    }*/
     
     public String informe()
     {
@@ -48,14 +60,9 @@ public class Client {
         	// Exercici 10, substituir les variables temporals per crides
             // eliminem variable quantitat;
 
-            // afegeix lloguers freqüents
-            bonificacions ++;
-
-            // afegeix bonificació per dos dies de lloguer de Luxe
-            if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
-                    lloguer.getDies()>1 ) {
-                bonificacions ++;
-            }
+        	// Exercici 11: delegar càlcul de bonificacions a un mètode
+        	// 			12: moure el mètode a Lloguer
+        	bonificacions += lloguer.bonificacions();
 
             // composa els resultats d'aquest lloguer
             resultat += "\t" +

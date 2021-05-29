@@ -49,20 +49,13 @@ public class Client {
         return bonificacions;
     }*/
     
-    public String informe()
+    // 15: Moure càlcul import total a un mètode
+    public double importTotal()
     {
-        double total = 0;
-        int bonificacions = 0;
-        String resultat = "Informe de lloguers del client " +
-            getNom() +
-            " (" + getNif() + ")\n";
+    	double total = 0;
         for (Lloguer lloguer: lloguers) {
         	// Exercici 10, substituir les variables temporals per crides
             // eliminem variable quantitat;
-
-        	// Exercici 11: delegar càlcul de bonificacions a un mètode
-        	// 			12: moure el mètode a Lloguer
-        	bonificacions += lloguer.bonificacions();
 
             // composa els resultats d'aquest lloguer
             resultat += "\t" +
@@ -74,10 +67,30 @@ public class Client {
                 (lloguer.quantitat() * 30) + "€" + "\n";
             total += lloguer.quantitat() * 30;
         }
+        return total;
+    }
+    
+    // 16: Moure càlcul bonificacions a un mètode
+    public int bonificacionsTotals()
+    {
+    	int bonificacions = 0;
+    	for (Lloguer lloguer: lloguers)
+    	{
+        	bonificacions += lloguer.bonificacions();
+    	}
+    	return bonificacions;
+    }
+    
+    public String informe()
+    {
+        String resultat = "Informe de lloguers del client " +
+            getNom() +
+            " (" + getNif() + ")\n";
+
 
         // afegeix informació final
-        resultat += "Import a pagar: " + total + "€\n" +
-            "Punts guanyats: " + bonificacions + "\n";
+        resultat += "Import a pagar: " + importTotal() + "€\n" +
+            "Punts guanyats: " + bonificacionsTotals() + "\n";
         return resultat;
     }
 }

@@ -21,23 +21,46 @@ public class Client {
 
     public void setNif(String nif) { this.nif = nif; }
     public void setNom(String nom) { this.nom = nom; }
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
+    public void setTelefon(String telefon) { this.telefon = telefon; }
+    
+    public void afegeix(Lloguer lloguer)
+    {
+        if (! lloguers.contains(lloguer)) lloguers.add(lloguer);
     }
-    public void afegeix(Lloguer lloguer) {
-        if (! lloguers.contains(lloguer) ) {
-            lloguers.add(lloguer);
-        }
+    
+    public void elimina(Lloguer lloguer)
+    {
+        if (lloguers.contains(lloguer)) lloguers.remove(lloguer);
     }
-    public void elimina(Lloguer lloguer) {
-        if (lloguers.contains(lloguer) ) {
-            lloguers.remove(lloguer);
-        }
-    }
-    public boolean conte(Lloguer lloguer) {
-        return lloguers.contains(lloguer);
-    }
+    
+    public boolean conte(Lloguer lloguer) { return lloguers.contains(lloguer); }
 
+    // Exercici 6: delegar el calcul de la quantitat a un altre mètode
+    public double quantitatPerLloguer(Lloguer lloguer)
+    {
+    	double quantitat = 0;
+    	switch (lloguer.getVehicle().getCategoria()) {
+        case Vehicle.BASIC:
+            quantitat = 3;
+            if (lloguer.getDies() > 3) {
+                quantitat= (lloguer.getDies() - 3) * 1.5;
+            }
+            break;
+            
+        case Vehicle.GENERAL:
+            quantitat = 4;
+            if (lloguer.getDies() > 2) {
+                quantitat= (lloguer.getDies() - 2) * 2.5;
+            }
+            break;
+            
+        case Vehicle.LUXE:
+            quantitat= lloguer.getDies() * 6;
+            break;
+    	}
+    	return quantitat;
+    }
+    
     public String informe()
     {
         double total = 0;
@@ -47,23 +70,7 @@ public class Client {
             " (" + getNif() + ")\n";
         for (Lloguer lloguer: lloguers) {
             double quantitat = 0;
-            switch (lloguer.getVehicle().getCategoria()) {
-                case Vehicle.BASIC:
-                    quantitat += 3;
-                    if (lloguer.getDies() > 3) {
-                        quantitat += (lloguer.getDies() - 3) * 1.5;
-                    }
-                    break;
-                case Vehicle.GENERAL:
-                    quantitat += 4;
-                    if (lloguer.getDies() > 2) {
-                        quantitat += (lloguer.getDies() - 2) * 2.5;
-                    }
-                    break;
-                case Vehicle.LUXE:
-                    quantitat += lloguer.getDies() * 6;
-                    break;
-            }
+            quantitat += quantitatPerLloguer(lloguer);
 
             // afegeix lloguers freqüents
             bonificacions ++;

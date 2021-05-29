@@ -6,6 +6,7 @@ public class Vehicle
 	public static final String BASIC = "BASIC";
 	public static final String GENERAL = "GENERAL";
 	public static final String LUXE = "LUXE";
+
 	
 	private String model, marca, categoria;
 

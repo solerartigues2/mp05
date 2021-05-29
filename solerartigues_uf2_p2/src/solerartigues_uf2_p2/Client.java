@@ -102,7 +102,7 @@ public class Client {
 	            lloguer.getVehicle().getModel() + ": " +
 	        // Exercici 10, substituir les variables temporales per crides
 	            // substituim variable pel seu càlcul
-	            (lloguer.quantitat() * 30) + "€" + "\n";
+	            (lloguer.quantitat() * Lloguer.PREU_UNITAT_LLOGUER) + "€" + "\n";
     	}
     	return resultat;
     }

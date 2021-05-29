@@ -45,8 +45,8 @@ public class Client {
             getNom() +
             " (" + getNif() + ")\n";
         for (Lloguer lloguer: lloguers) {
-            double quantitat = 0;
-            quantitat += lloguer.quantitat();
+        	// Exercici 10, substituir les variables temporals per crides
+            // eliminem variable quantitat;
 
             // afegeix lloguers freqüents
             bonificacions ++;
@@ -62,8 +62,10 @@ public class Client {
                 lloguer.getVehicle().getMarca() +
                 " " +
                 lloguer.getVehicle().getModel() + ": " +
-                (quantitat * 30) + "€" + "\n";
-            total += quantitat * 30;
+            // Exercici 10, substituir les variables temporales per crides
+                // substituim variable pel seu càlcul
+                (lloguer.quantitat() * 30) + "€" + "\n";
+            total += lloguer.quantitat() * 30;
         }
 
         // afegeix informació final
